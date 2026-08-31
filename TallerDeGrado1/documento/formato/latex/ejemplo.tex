@@ -1,0 +1,160 @@
+\documentclass[letterpaper]{wordglow}   % o [a4paper]
+
+% Se escribe tal cual sale impreso. \\ corta linea; \wgac{} lo lleva a acento.
+\wgTitulo{DOCUMENTACI\'ON\\\wgac{T\'ECNICA} DEL\\PROYECTO}
+\wgEyebrow{Desarrollo de software}
+\wgKicker{Informe final}{Dise\~no y desarrollo}
+\wgAutor{Nombre Apellido}
+\wgVersion{1.0}
+\wgFecha{30/08/26}
+\wgMarca{Wordglow}
+\wgSubtitulo{Documentaci\'on t\'ecnica}
+\wgWeb{www.wordglow.com}
+\wgCorreo{contacto@wordglow.com}
+\wgTel{+591 000 0000}
+\wgDireccion{Av. Ejemplo 123, Cochabamba, Bolivia}
+
+\begin{document}
+
+% ---------------------------------------------------------------- Portada
+\maketitle
+
+% ---------------------------------------------------------------- Indice
+\pagenumbering{roman}
+\wgindice
+\clearpage
+\pagenumbering{arabic}
+
+% ---------------------------------------------------------------- Seccion 1
+\wgchip{Secci\'on 1}
+\section{Arquitectura del sistema}
+
+P\'arrafo de cuerpo con la medida de l\'inea y el interlineado del documento.
+Esta misma plantilla se repite en todas las hojas interiores: encabezado con
+la marca y el t\'itulo, una sola columna de texto y pie con numeraci\'on.
+
+\subsection{Componentes}
+
+Los t\'itulos van numerados y en la tipograf\'ia de encabezado; el cuerpo
+mantiene el mismo tama\~no en todo el documento.
+
+\begin{itemize}
+  \item Servicio de API y autenticaci\'on
+  \item Base de datos y capa de persistencia
+\end{itemize}
+
+\begin{lstlisting}
+GET /api/v1/words?status=learning
+Authorization: Bearer <token>
+\end{lstlisting}
+
+\vskip13.5pt
+\noindent\small
+\begin{tabular}{@{}L{2.6in}L{3.7in}@{}}
+\wgth{Componente} & \wgth{Responsabilidad}\\
+\wgtoprule
+API & Exposici\'on de endpoints y validaci\'on\\
+\wgrowrule
+Cliente & Interfaz y estado local\\
+\wgrowrule
+\end{tabular}
+\par\normalsize\vskip13.5pt
+
+\wgnota{Nota o advertencia t\'ecnica: marcada solo con una regla de acento.}
+
+\clearpage
+
+% ---------------------------------------------------------------- Seccion 2
+\section{Elementos del documento}
+
+Muestra de los elementos que aparecen a lo largo del documento: figuras,
+tablas, listas numeradas, citas, ecuaciones y notas al pie, con el mismo
+tratamiento tipogr\'afico en todas las hojas.
+
+\begin{figure}[h]
+\caption{Arquitectura general del sistema}
+\wgplaceholder
+\wgnotafig{Elaboraci\'on propia a partir de la especificaci\'on del proyecto
+(Apellido, 2026).}
+\end{figure}
+
+\begin{table}[h]
+\caption{Comparaci\'on de alternativas t\'ecnicas}
+\vskip4pt
+\noindent\small
+% los anchos deben sumar 6.5in menos 2*\tabcolsep por cada separacion interna
+\begin{tabular}{@{}L{1.9in}L{3.2in}R{1.1in}@{}}
+\wgth{Opci\'on} & \wgth{Ventaja} & \wgth{Costo}\\
+\wgtoprule
+Alternativa A & Menor tiempo de desarrollo & Bajo\\
+\wgrowrule
+Alternativa B & Mayor escalabilidad & Medio\\
+\wgrowrule
+Alternativa C & Independencia de proveedor & Alto\\
+\wgrowrule
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\subsection{Listas, citas y notas}
+
+\noindent
+\begin{minipage}[t]{0.46\linewidth}
+  {\wglabel{Lista numerada}\par}\vskip6pt
+  \begin{enumerate}
+    \item Definici\'on de requisitos
+    \item Dise\~no de la soluci\'on
+    \item Implementaci\'on y pruebas
+  \end{enumerate}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\linewidth}
+  {\wglabel{Lista de vi\~netas}\par}\vskip6pt
+  \begin{itemize}
+    \item Entorno de desarrollo
+    \item Entorno de pruebas
+    \item Entorno de producci\'on
+  \end{itemize}
+\end{minipage}
+\par\vskip16.5pt
+
+\wgcodigotitulo{Consulta de palabras en estado de aprendizaje}
+\begin{lstlisting}
+GET /api/v1/words?status=learning
+Authorization: Bearer <token>
+\end{lstlisting}
+\wgnotafig{Fragmento de la especificaci\'on de la API interna.}
+\vskip16.5pt
+
+\begin{quote}
+Cita textual de una fuente, con la referencia al final de la l\'inea.
+\wgfuente{Autor, obra, a\~no}
+\end{quote}
+
+\wgecuacion{P_{\text{dominada}} = n_{\text{correctas}} / n_{\text{totales}}}{1}
+
+Nota al pie de ejemplo.\footnote{Nota al pie: aclaraci\'on o referencia
+bibliogr\'afica breve.}
+
+\clearpage
+
+% ---------------------------------------------------------------- Referencias
+\begin{referencias}
+\refitem American Psychological Association. (2020). \textit{Publication manual
+of the American Psychological Association} (7.\textsuperscript{a} ed.).
+https://doi.org/10.1037/0000165-000
+\refitem Apellido, A.~A. (2026). T\'itulo del art\'iculo de revista.
+\textit{Nombre de la Revista, 12}(3), 45--67. https://doi.org/10.0000/xxxxx
+\refitem Apellido, B.~B. y Apellido, C.~C. (2025). \textit{T\'itulo del libro}
+(2.\textsuperscript{a} ed.). Editorial.
+\refitem Organizaci\'on de Desarrollo. (2024). \textit{T\'itulo del informe
+t\'ecnico} (Informe n.\textsuperscript{o} 14). https://www.ejemplo.org/informe
+\end{referencias}
+
+\wgcitasenel{Par\'entesis: (Apellido, 2026, p.~45) \textperiodcentered\ Narrativa:
+Apellido (2026) se\~nala que\ldots\ \textperiodcentered\ Tres o m\'as autores:
+(Apellido et al., 2025)}
+
+\wgcierre
+
+\end{document}

@@ -1,0 +1,63 @@
+%% ===================================================================
+%%  Plantilla lista para usar -- formato Wordglow
+%%  Compilar:  pdflatex plantilla.tex   (dos veces)
+%%  Referencia de todos los elementos:  ejemplo.tex
+%% ===================================================================
+\documentclass[letterpaper]{wordglow}   % o [a4paper]
+
+%% ---- Datos del documento -------------------------------------------
+%% El titulo se escribe TAL CUAL sale impreso.  \\ corta linea.
+%% \wgac{...} lleva esa palabra al color de acento.
+\wgTitulo{DOCUMENTACI\'ON\\\wgac{T\'ECNICA} DEL\\PROYECTO}
+\wgEyebrow{Desarrollo de software}
+\wgKicker{Informe final}{Dise\~no y desarrollo}
+\wgAutor{Nombre Apellido}
+\wgVersion{1.0}
+\wgFecha{\today}
+
+%% ---- Marca (encabezado, pie y pagina de cierre) -------------------
+\wgMarca{Wordglow}
+\wgSubtitulo{Documentaci\'on t\'ecnica}
+\wgWeb{www.wordglow.com}
+\wgCorreo{contacto@wordglow.com}
+\wgTel{+591 000 0000}
+\wgDireccion{Av. Ejemplo 123, Cochabamba, Bolivia}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\wgindice
+\clearpage
+\pagenumbering{arabic}
+
+% ===================================================================
+\section{T\'itulo de la primera secci\'on}
+
+Escribe aqu\'i el contenido. El cuerpo, el interlineado y los m\'argenes
+ya est\'an fijados por la clase.
+
+\subsection{Subsecci\'on}
+
+M\'as texto.
+
+% -- Elementos disponibles (ver ejemplo.tex para todos):
+% \wgchip{Secci\'on 1}                      chip enmarcado sobre un titulo
+% \wgnota{...}                              callout con regla de acento
+% \begin{quote}...\wgfuente{Autor}\end{quote}   cita
+% \begin{lstlisting}...\end{lstlisting}     bloque de codigo
+% \wgcodigotitulo{...} + lstlisting         codigo con rotulo "Codigo N"
+% \wgecuacion{formula}{n}                   ecuacion numerada entre reglas
+% figure + \caption + \wgplaceholder + \wgnotafig{...}
+% table  + \caption + tabular(L{}/R{}) + \wgth/\wgtoprule/\wgrowrule
+
+% ===================================================================
+\clearpage
+\begin{referencias}
+\refitem Apellido, A.~A. (2026). \textit{T\'itulo de la obra}. Editorial.
+\end{referencias}
+
+\wgcierre
+
+\end{document}
