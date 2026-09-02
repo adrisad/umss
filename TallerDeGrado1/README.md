@@ -2,7 +2,7 @@
 
 > Documento de Taller de Grado I — UMSS
 
-_Última actualización: 2026-08-30_
+_Última actualización: 2026-09-02_
 
 ## Contenido
 
@@ -20,15 +20,16 @@ Nombre del producto: **Wordglow**.
 
 ## Funcionalidades principales
 
-- Palabras clickeables en el texto que cambian de color según su estado: nuevo, aprendiendo, dominado.
+- Palabras clickeables en el texto que cambian de color según su estado: nuevo, aprendiendo, dominado e ignorado.
 - Traducción de palabras vía API al hacer click.
 - Cuentos cortos generados automáticamente con IA cada día, ajustados al nivel del usuario.
-- Cada cuento incluye una **imagen descriptiva** generada/asociada al contenido del cuento.
+- Cada cuento incluye una **imagen descriptiva**, agregada manualmente por el creador de la historia.
 - **Función de lectura en voz alta (text-to-speech)** del cuento completo, con un **marco/resaltado de color** que sigue la palabra o línea que se está leyendo, para que el usuario pueda seguir la lectura visualmente mientras escucha.
 - Progreso de palabras guardado en backend, con estado global (aplica a todos los cuentos, no por cuento individual).
 - Sistema de login de usuarios.
 - Sistema de racha (streak) tipo Duolingo.
-- **Modo flashcard con repetición espaciada** para repasar palabras guardadas: tarjetas con la palabra en inglés que se voltean para mostrar traducción, fonética y audio; el intervalo de repaso de cada palabra se recalcula según el resultado (la marca el usuario como recordada o no) siguiendo un algoritmo tipo SM-2/Leitner, y prioriza primero las palabras en estado "aprendiendo" y las vencidas ese día.
+- **Widgets para la pantalla de inicio del teléfono**: acceso directo al cuento del día, vista rápida de la racha y el progreso, y estado del jardín (cuántas plantas necesitan agua o están marchitas) con toque directo a la sesión de repaso, todo sin abrir la app.
+- **Modo flashcard con repetición espaciada** para repasar palabras guardadas: tarjetas con la palabra en inglés que se voltean para mostrar traducción, fonética y audio; el intervalo entre repasos crece de forma exponencial con cada acierto y se acorta al fallar, siguiendo un algoritmo tipo SM-2/Leitner; la sesión prioriza las palabras vencidas ese día, empezando por las que están en estado "aprendiendo".
 
 ## Funcionalidades definidas en la maqueta
 
@@ -70,6 +71,30 @@ Se abre junto a la palabra tocada y contiene:
 4. **Mi vocabulario** — todas las palabras vistas con traducción y fonética, filtrables por estado (todas / nuevas / aprendiendo / dominadas / ignoradas).
 5. **Progreso** — racha actual y más larga, palabras dominadas, cuentos leídos, calendario de cinco semanas con los números de día y gráfico de palabras dominadas por semana.
 6. **Ajustes de nivel** — nivel de vocabulario (A1–B2), largo del cuento, temas preferidos y hora del recordatorio diario.
+7. **Mi jardín (flashcards)** — modo de repaso con repetición espaciada presentado como un jardín: cada palabra en *aprendiendo* o *dominado* es una planta cuya etapa y salud dependen del ciclo de repetición espaciada de esa palabra.
+
+### Mi jardín (flashcards)
+
+Reúne en una sola vista todas las palabras que el usuario está memorizando y las convierte en un jardín que cuida día a día. El jardín no es una lista con adornos: es el lugar donde se hace el repaso.
+
+**Qué planta cada palabra.** Entran al jardín las palabras en estado *aprendiendo* y *dominado*; las *nuevas* y las *ignoradas* no aparecen. Cada planta tiene una etapa de crecimiento que refleja lo avanzado que está su ciclo de repetición espaciada: cuanto más largo es el intervalo alcanzado, más crecida se ve la planta, y las palabras ya *dominadas* se muestran en flor.
+
+**Salud y riego.** Cada palabra tiene una fecha de repaso que fija el algoritmo de repetición espaciada. La salud de su planta depende de cuánto se pasó de esa fecha:
+
+- **Sana** — el usuario la repasó el día establecido.
+- **Necesita agua** — pasó un día desde la fecha de repaso.
+- **Marchita** — pasaron otras 12 horas sin repasarla.
+- **Muerta** — pasaron 2 horas más. La palabra pierde su progreso y vuelve al estado *nuevo*; la planta sale del jardín hasta que el usuario la vuelva a marcar mientras lee. La app avisa al usuario cuando una planta muere.
+
+Regar una planta es repasarla: al resolver su flashcard vuelve a estado sano y se reprograma el próximo repaso con un intervalo más largo. Esto aplica igual a las plantas en flor: una palabra *dominada* también vence, también hay que regarla y también puede morir si se la descuida.
+
+**La flashcard.** Tocar una planta abre su tarjeta: al frente, la ilustración de la planta y la palabra en inglés; al voltearla, la traducción, la transcripción fonética y el audio de pronunciación. Tres botones de resultado —**Otra vez**, **Bien**, **Fácil**— reprograman la palabra: con *Bien* y *Fácil* el intervalo hasta el próximo repaso crece de forma exponencial (más con *Fácil*); *Otra vez* devuelve la palabra al inicio del ciclo y la deja para volver a verla en la misma sesión.
+
+**Sesión de repaso.** Un botón "Regar el jardín" arma una sesión con las plantas que necesitan agua o están marchitas, ordenadas por antigüedad del vencimiento. La sesión muestra cuántas tarjetas quedan y termina en una vista breve de resumen: plantas regadas, aciertos y cuántas siguen pendientes. No hay sesión infinita: si no hay nada vencido, el jardín aparece "todo regado" y no fuerza repaso extra.
+
+**Relación con el resto de la app.** El estado de cada palabra es global: regarla o marcarla en el jardín actualiza el mismo registro que el panel de palabra dentro de un cuento y la pantalla Mi vocabulario. La racha **no** depende del jardín: solo se cumple cuando el usuario termina el cuento del día con el botón correspondiente. El recordatorio diario puede avisar cuando hay plantas marchitas o muertas, y el widget de la pantalla de inicio muestra el conteo de plantas que necesitan agua y abre la sesión de repaso directamente.
+
+**Estado vacío.** Sin palabras en *aprendiendo* ni *dominado*, el jardín muestra tierra preparada y una nota que invita a marcar palabras mientras se lee.
 
 ### Gamificación y feedback
 
@@ -79,7 +104,7 @@ Se abre junto a la palabra tocada y contiene:
 
 ### Interfaz
 
-- Formato **solo móvil**, con barra de navegación inferior de seis pestañas.
+- Formato **solo móvil**, con barra de navegación inferior de siete pestañas (incluye Jardín).
 - **Modo claro y modo oscuro** conmutables desde la cabecera.
 - Tipografía Archivo, esquina cero y reglas de 2px según el sistema de diseño Modernist; acento rojo `#ec3013`.
 
@@ -92,8 +117,3 @@ Se abre junto a la palabra tocada y contiene:
 - Interacción social
 - Otros idiomas
 - Certificaciones
-
-## Notas de proceso
-
-- El usuario (Adrian) se encarga de toda la implementación (código, backend, frontend/app móvil).
-- Claude apoya principalmente con documentación académica del proyecto: perfil de proyecto, planteamiento del problema, objetivos, alcance, justificación, marco teórico, metodología, y otros entregables escritos que pida la materia (Ingeniería Informática).
