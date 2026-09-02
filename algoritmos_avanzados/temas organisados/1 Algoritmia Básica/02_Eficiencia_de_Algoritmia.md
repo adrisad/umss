@@ -1,83 +1,10 @@
 # Eficiencia de Algoritmia
 
-> Transcripción fiel (diapositiva por diapositiva) de `clase015_FundamentosEficiencia.pdf`.
-> Leticia Blanco — Departamento de Informática - Sistemas, UMSS — 21 de agosto de 2024 — Algoritmos Avanzados
-
----
-
-## Contenido
-
-- Antecedentes
-- Análisis de eficiencia
-- Tiempo de ejecución
-  - Definición
-  - Ejemplos
-  - Resumen
-- Complejidad
-  - Definición
-  - Propiedades
-
----
-
-# Antecedentes
-
-## Diapositiva — Antecedentes
-
-Correctitud
-Eficiencia
-
-La solución que se presenta debe ser eficiente.
-Por lo que, las preguntas son:
-
-- Cuánto tardan?
-- Es posible medir la lógica de pensamiento?
-
----
-
-# Análisis de eficiencia
-
-## Diapositiva — Análisis de eficiencia
-
-Por qué hacer análisis de eficiencia?
-
-- Hay varias *soluciones* para un problema.
-- Cuál es mejor?
-- Cómo elegimos?
-
-Uso de recursos: *procesador*/memoria
-Presunción del *mundo ideal*
-
-## Diapositiva — Análisis de eficiencia
-
-- Tiempo de ejecución
-- Complejidad
-
----
-
-# Tiempo de ejecución
-
-## Definición
-
-### Diapositiva — Tiempo de ejecución
-
-Cuenta cada paso primitivo de un algoritmo.
+Tiempo de ejecucion: Cuenta cada paso primitivo de un algoritmo.
 
 $T_A(n)$: tiempo de ejecución del algoritmo A para una entrada de tamaño n
 
-- Tiempo de ejecución: $T_A(n) \equiv f(n)$
-- $T_A(n) \equiv \sum_{i=1}^{k} T_{p_i}(n)$
-- $T_{p_i}(n) \equiv$ tiempo de ejecución del paso $p_i$
-
-Expresado como una función matemática, para fines de comparación.
-
-### Diapositiva — Tiempo de ejecución
-
-Medir:
-
-- Expresiones(calcular/comparar)
-- Instrucciones (pasos)
-
-### Diapositiva — Tiempo de ejecución - Expresiones
+### Expresiones
 
 $$
 E =
@@ -95,31 +22,41 @@ $$
 
 Declaración: **tipo var**
 
-$$T(n) \equiv 0$$
+$$
+T(n) \equiv 0
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
 Lectura: **leer var**
 
-$$T_{in}(n) \equiv 1$$
+$$
+T_{in}(n) \equiv 1
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
 Escritura: **mostrar E**
 
-$$T_{out}(n) \equiv T_E(n)$$
+$$
+T_{out}(n) \equiv T_E(n)
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
 Retorno: **return E**
 
-$$T_{ret}(n) \equiv T_E(n)$$
+$$
+T_{ret}(n) \equiv T_E(n)
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
 Asignación: **var = E**
 
-$$T_{asig}(n) \equiv T_E(n) + 1 \equiv T_E(n)$$
+$$
+T_{asig}(n) \equiv T_E(n) + 1 \equiv T_E(n)
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
@@ -133,7 +70,9 @@ Condicional: **if_then_else**
 5  }
 ```
 
-$$T_{if}(n) \equiv T_{expBool}(n) + max(T_{cuerpoSI}(n), T_{cuerpoNO}(n))$$
+$$
+T_{if}(n) \equiv T_{expBool}(n) + max(T_{cuerpoSI}(n), T_{cuerpoNO}(n))
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
@@ -147,7 +86,9 @@ Repetición por conteo: **for**
 
 $valorIni \le cont \le valorFin;\ +k$
 
-$$T_{for}(n) \equiv \frac{valorFin-valorIni}{k} + 2 + \left(\frac{valorFin-valorIni}{k} + 1\right) * T_{cuerpo}(n)$$
+$$
+T_{for}(n) \equiv \frac{valorFin-valorIni}{k} + 2 + \left(\frac{valorFin-valorIni}{k} + 1\right) * T_{cuerpo}(n)
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
@@ -161,7 +102,9 @@ Repetición por condición: **while_do**
 
 $m \equiv$ numero de veces que la expBool se hace verdadera
 
-$$T_{while}(n) \equiv (m+1) * T_{expBool}(n) + m * T_{cuerpo}(n)$$
+$$
+T_{while}(n) \equiv (m+1) * T_{expBool}(n) + m * T_{cuerpo}(n)
+$$
 
 ### Diapositiva — Tiempo de ejecución - Instrucciones
 
@@ -175,7 +118,9 @@ Repetición por condición: **do_while**
 
 $m \equiv$ numero de veces que la expBool se hace verdadera
 
-$$T_{do}(n) \equiv (m+1) * (T_{expBool}(n) + T_{cuerpo}(n))$$
+$$
+T_{do}(n) \equiv (m+1) * (T_{expBool}(n) + T_{cuerpo}(n))
+$$
 
 ---
 
@@ -298,14 +243,14 @@ $T(n) \equiv 11m + 5$; pero que es m?
 4  }
 ```
 
-| n | n > 0 | nro veces True |
-|---|-------|----------------|
-| n | True | 1 |
-| $n/10^1$ | True | 2 |
-| $n/10^2$ | True | 3 |
-| ... | ... | ... |
-| $n/10^{m-1}$ | True | m |
-| $n/10^m$ | False | m+1 |
+| n              | n > 0 | nro veces True |
+| -------------- | ----- | -------------- |
+| n              | True  | 1              |
+| $n/10^1$     | True  | 2              |
+| $n/10^2$     | True  | 3              |
+| ...            | ...   | ...            |
+| $n/10^{m-1}$ | True  | m              |
+| $n/10^m$     | False | m+1            |
 
 $n/10^{m-1} = 1$
 $n = 10^{m-1}$
@@ -410,14 +355,14 @@ Cuánto es m? Cuánto es c?
 5  }
 ```
 
-| x | x > 9 | nro veces True | c |
-|---|-------|----------------|---|
-| x | True | 1 | 2 |
-| $x/10^1$ | True | 2 | 3 |
-| $x/10^2$ | True | 3 | 4 |
-| ... | ... | ... | ... |
-| $x/10^{m-1}$ | True | m | m+1 |
-| $x/10^m$ | False | m+1 | |
+| x              | x > 9 | nro veces True | c   |
+| -------------- | ----- | -------------- | --- |
+| x              | True  | 1              | 2   |
+| $x/10^1$     | True  | 2              | 3   |
+| $x/10^2$     | True  | 3              | 4   |
+| ...            | ...   | ...            | ... |
+| $x/10^{m-1}$ | True  | m              | m+1 |
+| $x/10^m$     | False | m+1            |     |
 
 $x/10^{m-1} = 10$
 $x = 10 * 10^{m-1}$
@@ -570,7 +515,9 @@ Cómo determinar la función *g(n)* dado que se tiene *f(n)*?
 
 Si la función f(n) tiene la forma:
 
-$$f(n) = t_1 + t_2 + t_3 + .... t_k$$
+$$
+f(n) = t_1 + t_2 + t_3 + .... t_k
+$$
 
 Se debe identificar el $t_j$, que sea el mayor de todos los términos de la *f(n)*.
 
@@ -590,10 +537,10 @@ Veamos gráficamente las funciones *f(n)* y *g(n)*
 
 ### Diapositiva — Complejidad (tabla f(n) y g(n))
 
-| n | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-|---|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|----|
+| n    | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10 | 11   | 12   | 13   | 14   | 15   | 16   |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | -- | ---- | ---- | ---- | ---- | ---- | ---- |
 | T(n) | 13,9 | 14,8 | 15,7 | 16,6 | 17,5 | 18,4 | 19,3 | 20,2 | 21,1 | 22 | 22,9 | 23,8 | 24,7 | 25,6 | 26,5 | 27,4 |
-| g(n) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
+| g(n) | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10 | 11   | 12   | 13   | 14   | 15   | 16   |
 
 $T(n) = f(n) = 9n/10 + 13$    $g(n) = n$
 
@@ -607,7 +554,9 @@ Cómo es esto posible?, claramente la función *f(n)* está más arriba que *g(n
 
 Recordemos la definición de *O*:
 
-$$f(n) = O(g(n)) \simeq f(n) \le g(n)$$
+$$
+f(n) = O(g(n)) \simeq f(n) \le g(n)
+$$
 
 Que se lee:
 
@@ -615,7 +564,9 @@ Que se lee:
 
 ### Diapositiva — Complejidad
 
-$$f(n) = O(g(n)) \simeq f(n) \le g(n)$$
+$$
+f(n) = O(g(n)) \simeq f(n) \le g(n)
+$$
 
 Para que esta relación se cumpla, se debe conseguir un $n_0$ a partir del cual la función *g(n)* acota maximalmente a *f(n)*. Y a su vez es posible desplazar la función *g(n)* en un valor constante *c*. Entonces se tiene que:
 
@@ -626,11 +577,11 @@ $f(n) \le c * g(n)$
 
 ### Diapositiva — Complejidad (tabla con c*g(n))
 
-| n | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-|---|---|---|---|---|---|---|---|---|---|----|----|----|----|----|----|----|
-| T(n) | 13,9 | 14,8 | 15,7 | 16,6 | 17,5 | 18,4 | 19,3 | 20,2 | 21,1 | 22 | 22,9 | 23,8 | 24,7 | 25,6 | 26,5 | 27,4 |
-| g(n) | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 |
-| c*g(n) | 2 | 4 | 6 | 8 | 10 | 12 | 14 | 16 | 18 | 20 | 22 | 24 | 26 | 28 | 30 | 32 |
+| n      | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10 | 11   | 12   | 13   | 14   | 15   | 16   |
+| ------ | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | -- | ---- | ---- | ---- | ---- | ---- | ---- |
+| T(n)   | 13,9 | 14,8 | 15,7 | 16,6 | 17,5 | 18,4 | 19,3 | 20,2 | 21,1 | 22 | 22,9 | 23,8 | 24,7 | 25,6 | 26,5 | 27,4 |
+| g(n)   | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10 | 11   | 12   | 13   | 14   | 15   | 16   |
+| c*g(n) | 2    | 4    | 6    | 8    | 10   | 12   | 14   | 16   | 18   | 20 | 22   | 24   | 26   | 28   | 30   | 32   |
 
 $T(n) = f(n) = 9n/10 + 13$    $g(n) = n$    $c*g(n) = 2 * n$    $n_0 = 12$
 
@@ -640,7 +591,9 @@ $T(n) = f(n) = 9n/10 + 13$    $g(n) = n$    $c*g(n) = 2 * n$    $n_0 = 12$
 
 Por lo tanto, se ha demostrado que:
 
-$$f(n) = O(g(n))$$
+$$
+f(n) = O(g(n))
+$$
 
 para valores
 
@@ -651,28 +604,32 @@ $n_0 = 12$
 
 Consideremos ahora el $T_{capicua}(x)$ y definamos la función que acota maximalmente a este tiempo de ejecución, para determinar la complejidad de la solución.
 
-$$T_{capicua}(x) = 14 + 16 * log_{10} x$$
+$$
+T_{capicua}(x) = 14 + 16 * log_{10} x
+$$
 
 El termino que define la función es $16 * log_{10} x$, por lo que la función candidata a acotar es:
 
-$$g(x) = log_{10} x$$
+$$
+g(x) = log_{10} x
+$$
 
 ### Diapositiva — Complejidad ($T_{capicua}$: tabla)
 
-| x | 1 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110 | 120 | 130 | 140 |
-|---|---|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|
+| x    | 1     | 10    | 20    | 30    | 40    | 50    | 60    | 70    | 80    | 90    | 100   | 110   | 120   | 130   | 140   |
+| ---- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | T(x) | 14,00 | 30,00 | 34,82 | 37,63 | 39,63 | 41,18 | 42,45 | 43,52 | 44,45 | 45,27 | 46,00 | 46,66 | 47,27 | 47,82 | 48,34 |
-| g(x) | 0,00 | 1,00 | 1,30 | 1,48 | 1,60 | 1,70 | 1,78 | 1,85 | 1,90 | 1,95 | 2,00 | 2,04 | 2,08 | 2,11 | 2,15 |
+| g(x) | 0,00  | 1,00  | 1,30  | 1,48  | 1,60  | 1,70  | 1,78  | 1,85  | 1,90  | 1,95  | 2,00  | 2,04  | 2,08  | 2,11  | 2,15  |
 
 $T(x) = f(x) = 14 + 16 * \log x$    $g(x) = \log x$
 
 ### Diapositiva — Complejidad ($T_{capicua}$: tabla con c*g(x))
 
-| x | 1 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100 | 110 | 120 | 130 | 140 |
-|---|---|----|----|----|----|----|----|----|----|----|-----|-----|-----|-----|-----|
-| T(x) | 14,00 | 30,00 | 34,82 | 37,63 | 39,63 | 41,18 | 42,45 | 43,52 | 44,45 | 45,27 | 46,00 | 46,66 | 47,27 | 47,82 | 48,34 |
-| g(x) | 0,00 | 1,00 | 1,30 | 1,48 | 1,60 | 1,70 | 1,78 | 1,85 | 1,90 | 1,95 | 2,00 | 2,04 | 2,08 | 2,11 | 2,15 |
-| c*g(x) | 0,00 | 23,00 | 29,90 | 34,03 | 36,97 | 39,25 | 41,12 | 42,70 | 44,07 | 45,29 | 46,38 | 47,36 | 48,26 | 49,09 | 49,36 |
+| x      | 1     | 10    | 20    | 30    | 40    | 50    | 60    | 70    | 80    | 90    | 100   | 110   | 120   | 130   | 140   |
+| ------ | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| T(x)   | 14,00 | 30,00 | 34,82 | 37,63 | 39,63 | 41,18 | 42,45 | 43,52 | 44,45 | 45,27 | 46,00 | 46,66 | 47,27 | 47,82 | 48,34 |
+| g(x)   | 0,00  | 1,00  | 1,30  | 1,48  | 1,60  | 1,70  | 1,78  | 1,85  | 1,90  | 1,95  | 2,00  | 2,04  | 2,08  | 2,11  | 2,15  |
+| c*g(x) | 0,00  | 23,00 | 29,90 | 34,03 | 36,97 | 39,25 | 41,12 | 42,70 | 44,07 | 45,29 | 46,38 | 47,36 | 48,26 | 49,09 | 49,36 |
 
 $T(x) = f(x) = 14 + 16 * \log x$    $g(x) = \log x$    $c*g(x) = 23 * \log x$    $n_0 = 100$
 
@@ -680,7 +637,9 @@ $T(x) = f(x) = 14 + 16 * \log x$    $g(x) = \log x$    $c*g(x) = 23 * \log x$   
 
 Por lo tanto, se ha demostrado que:
 
-$$14 + 16 * log\ x = O(log\ n)$$
+$$
+14 + 16 * log\ x = O(log\ n)
+$$
 
 para valores
 
@@ -726,7 +685,7 @@ La eficiencia se representa con funciones, entonces entenderlas es importante; a
   - $(a^m)^n = a^{mn}$
   - $(a^m)^n = (a^n)^m$
   - $a^m * a^n = a^{m+n}$
-  $\forall n \wedge a \ge 1 \Rightarrow a^n$ es monotonicamente incremental en n
+    $\forall n \wedge a \ge 1 \Rightarrow a^n$ es monotonicamente incremental en n
 
 ### Diapositiva — Funciones
 
@@ -739,7 +698,7 @@ La eficiencia se representa con funciones, entonces entenderlas es importante; a
   - $\log_b \dfrac{1}{a} = -\log_b a$
   - $a^{\log_b c} = c^{\log_b a}$
   - $\dfrac{x}{1+x} \le \ln(1+x) \le x$
-  $\forall b > 1 \wedge n > 0 \Rightarrow \log_b n$ es estrictamente incremental en n
+    $\forall b > 1 \wedge n > 0 \Rightarrow \log_b n$ es estrictamente incremental en n
 
 ---
 
@@ -747,17 +706,17 @@ La eficiencia se representa con funciones, entonces entenderlas es importante; a
 
 Indica si $f(n) = O(g)$ o $f = \Omega(g)$ o si son ambos:
 
-| f (n) | g(n) |
-|-------|------|
-| $n - 100$ | $n - 200$ |
-| $n^{1/2}$ | $n^{2/3}$ |
+| f (n)             | g(n)               |
+| ----------------- | ------------------ |
+| $n - 100$       | $n - 200$        |
+| $n^{1/2}$       | $n^{2/3}$        |
 | $100n + log\ n$ | $n + (log\ n)^2$ |
-| $n log\ n$ | $10 n log\ 10n$ |
-| $log\ 2n$ | $log\ 3n$ |
-| $10 log\ n$ | $log(n^2)$ |
-| $n^{1,01}$ | $n log^2 n$ |
-| $n^2 / log\ n$ | $n(log\ n)^2$ |
-| $n^{0,1}$ | $(log\ n)^{10}$ |
+| $n log\ n$      | $10 n log\ 10n$  |
+| $log\ 2n$       | $log\ 3n$        |
+| $10 log\ n$     | $log(n^2)$       |
+| $n^{1,01}$      | $n log^2 n$      |
+| $n^2 / log\ n$  | $n(log\ n)^2$    |
+| $n^{0,1}$       | $(log\ n)^{10}$  |
 
 ---
 
